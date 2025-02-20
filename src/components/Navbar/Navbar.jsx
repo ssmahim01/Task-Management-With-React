@@ -1,10 +1,28 @@
-import { BiSolidLogInCircle } from "react-icons/bi";
+import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOutUser().then(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Log out successful",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    });
+  };
+
   const routes = (
     <>
       <NavLink
@@ -32,7 +50,11 @@ const Navbar = () => {
     <div className="navbar py-2 bg-neutral-200 border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn border border-neutral-300 btn-ghost lg:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn border border-neutral-300 btn-ghost lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -70,12 +92,26 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <button className="bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-700 rounded-md font-bold">
-          <Link to="/login" className="flex gap-2 items-center">
-            <span className="text-base">Login</span>
-            <BiSolidLogInCircle className="text-xl" />
-          </Link>
-        </button>
+        {user ? (
+          <>
+            <button
+              onClick={handleLogOut}
+              className="bg-rose-500 cursor-pointer py-2 px-5 text-white hover:bg-rose-700 rounded-md font-bold flex gap-1 items-center"
+            >
+              <BiSolidLogOutCircle className="text-2xl" />
+              <span className="text-base">Log Out</span>
+            </button>
+          </>
+        ) : (
+          <>
+            <button className="bg-indigo-500 py-2 px-5 text-white hover:bg-indigo-700 rounded-md font-bold">
+              <Link to="/login" className="flex gap-1 items-center">
+                <span className="text-base">Login</span>
+                <BiSolidLogInCircle className="text-xl" />
+              </Link>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

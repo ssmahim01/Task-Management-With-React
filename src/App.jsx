@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Authentication/Login";
 import Register from "./pages/Authentication/Register";
 import AuthLayout from "./layouts/AuthLayout";
+import AddTask from "./pages/AddTask/AddTask";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
      <Routes>
       <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
+      <Route path="/add-task" element={<AddTask />} />
       </Route>
      <Route element={<AuthLayout />}>
      <Route path="/login" element={<Login />} />

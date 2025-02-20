@@ -2,7 +2,7 @@ import { FaGithub, FaHome, FaInstagram, FaYoutube } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
 import { SiFacebook } from "react-icons/si";
-import { Link, NavLink } from "react-router";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -67,24 +67,24 @@ const Footer = () => {
           <h3 className="text-3xl font-bold">Page Links</h3>
           <nav className="flex flex-col gap-y-4 *:font-semibold">
               <button className="btn btn-ghost lg:w-1/5 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <NavLink to="/" className="flex gap-x-2">
+            <Link to="/" className="flex gap-x-2">
                 <FaHome className="text-lg" />{" "}
                 <span>Home</span>
-            </NavLink>
+            </Link>
               </button>
 
               <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <NavLink to="/add-tasks" className="flex gap-x-2">
+            <Link to="/add-task" className="flex gap-x-2">
                 <IoMdAddCircle className="text-lg" />{" "}
                 <span>Add Tasks</span>
-            </NavLink>
+            </Link>
               </button>
 
               <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <NavLink to="/manage-tasks" className="flex gap-x-2">
+            <Link to="/manage-tasks" className="flex gap-x-2">
                 <MdMenuBook className="text-lg" />{" "}
                 <span>Manage Tasks</span>
-            </NavLink>
+            </Link>
               </button>
           </nav>
         </div>
