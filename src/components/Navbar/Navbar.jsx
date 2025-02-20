@@ -9,19 +9,19 @@ const Navbar = () => {
     <>
       <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
-        href={"/"}
+        to="/"
       >
         <FaHome className="text-xl" /> <span>Home</span>
       </NavLink>
       <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
-        href="/add-task"
+        to="/add-task"
       >
         <IoMdAddCircle className="text-xl" /> <span>Add Task</span>
       </NavLink>
       <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
-        href="/manage-tasks"
+        to="/manage-tasks"
       >
         <MdMenuBook className="text-xl" /> <span>Manage Tasks</span>
       </NavLink>
@@ -32,7 +32,7 @@ const Navbar = () => {
     <div className="navbar py-2 bg-neutral-200 border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn border border-neutral-300 btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -50,7 +50,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-60 p-3 shadow gap-3 mr-3 *:text-neutral-800 *:font-semibold"
+            className="menu menu-sm dropdown-content bg-base-100/90 rounded-box z-[10] mt-3 w-60 p-3 shadow gap-3 mr-3 *:text-neutral-800 *:font-semibold"
           >
             {routes}
           </ul>

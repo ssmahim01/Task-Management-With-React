@@ -66,21 +66,21 @@ const Footer = () => {
         <div className="md:w-2/5 space-y-3">
           <h3 className="text-3xl font-bold">Page Links</h3>
           <nav className="flex flex-col gap-y-4 *:font-semibold">
-              <button className="btn btn-ghost w-1/5 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <button className="btn btn-ghost lg:w-1/5 hover:bg-neutral hover:text-white rounded-md justify-start">
             <NavLink to="/" className="flex gap-x-2">
                 <FaHome className="text-lg" />{" "}
                 <span>Home</span>
             </NavLink>
               </button>
 
-              <button className="btn btn-ghost w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
             <NavLink to="/add-tasks" className="flex gap-x-2">
                 <IoMdAddCircle className="text-lg" />{" "}
                 <span>Add Tasks</span>
             </NavLink>
               </button>
 
-              <button className="btn btn-ghost w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
             <NavLink to="/manage-tasks" className="flex gap-x-2">
                 <MdMenuBook className="text-lg" />{" "}
                 <span>Manage Tasks</span>
