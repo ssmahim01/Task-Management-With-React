@@ -1,23 +1,64 @@
+import axios from "axios";
 import { IoMdAddCircle } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddTask = () => {
+  const navigate = useNavigate();
   const handleAddTask = async (e) => {
     e.preventDefault();
 
     const form = e.target;
-    const title = form.taskTitle.value;
-    const description = form.description.value;
-    const dueDate = form.dueDate.value;
+    const Title = form.taskTitle.value;
+    const Description = form.description.value;
+    const Category = form.category.value;
 
-    const taskData = {
-      title,
-      description,
-      dueDate,
-      timeStamp: new Date().toISOString(),
-      status: "",
-    };
+    if (!Title.trim()) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Title is required!",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
 
-    console.log(taskData);
+    try {
+      const taskData = {
+        Title,
+        Description,
+        TimeStamp: new Date().toISOString(),
+        Category,
+      };
+
+      console.log(taskData);
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/tasks`
+      );
+
+      if (response.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${Title} is successfully added`,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   };
 
   return (
@@ -25,7 +66,7 @@ const AddTask = () => {
       <div className="lg:w-3/5 w-11/12 mx-auto flex-col">
         <div className="text-center pb-5">
           <h1 className="lg:text-5xl md:text-4xl text-3xl font-bold">
-            Add Task
+            Add New Task
           </h1>
         </div>
 
@@ -59,20 +100,26 @@ const AddTask = () => {
 
             <fieldset className="fieldset">
               <label className="fieldset-label">
-                <span className="font-bold">Due Date</span>
+                <span className="font-bold">Task Category</span>
               </label>
-              <input
-                type="date"
-                name="dueDate"
-                className="input w-full font-medium"
-                required
-              />
+
+              <select
+                name="category"
+                className="select select-info cursor-pointer p-2 mb-2"
+              >
+                <option defaultValue={"Select Category"} disabled>
+                  Select Category
+                </option>
+                <option value="To-Do">To-Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Done">Done</option>
+              </select>
             </fieldset>
 
-            <div className="mt-6 lg:w-1/4 md:w-2/5 w-11/12">
-              <button className="btn bg-indigo-500 border-none text-white/90 hover:btn-primary font-bold rounded-md flex gap-2 items-center">
+            <div className="mt-1 lg:w-1/4 md:w-2/5 w-11/12">
+              <button className="btn bg-indigo-500 border-none text-white/90 hover:bg-indigo-700 font-bold rounded-md flex gap-1 items-center">
+                <span className="text-lg">Add Task</span>
                 <IoMdAddCircle className="text-xl" />{" "}
-                <span className="text-lg">Add</span>
               </button>
             </div>
           </form>
