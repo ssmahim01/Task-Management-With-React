@@ -10,8 +10,7 @@ import axios from "axios";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loginWithGoogle, loginWithEmailPassword } =
-    useContext(AuthContext);
+  const { loginWithGoogle, loginWithEmailPassword } = useContext(AuthContext);
   const [hidePassword, setHidePassword] = useState(true);
   const from = location?.state?.from?.pathname || "/";
 
@@ -19,6 +18,15 @@ const Login = () => {
     try {
       const result = await loginWithGoogle();
       const user = await result.user;
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${user?.displayName} is successfully logged in via Google`,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      navigate(from, { replace: true });
 
       // Prepare data for saving in the database
       const userData = {
@@ -30,21 +38,7 @@ const Login = () => {
       };
 
       // Insert user data in the database
-      const dbResponse = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/user`,
-        userData
-      );
-
-      if (dbResponse.data.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `${user?.displayName} is successfully logged in via Google`,
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        navigate(from, { replace: true });
-      }
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user`, userData);
     } catch (error) {
       Swal.fire({
         position: "center",
@@ -84,7 +78,10 @@ const Login = () => {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: error.response?.data?.message || error.message || "Something went wrong",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
         showConfirmButton: false,
         timer: 3000,
       });

@@ -43,55 +43,67 @@ const Register = () => {
     }
 
     try {
-        // Create an user
-        const userCredential = await createUser(email, password);
-        const user = userCredential.user; // Get user info after registration
-      
-        // Update user name and photo
-        await updateUserInfo({ displayName: name, photoURL: photo });
-      
-        // Prepare data for saving in the database
-        const userData = {
-          userID: user.uid,
-          name: name, // Use manually since updateProfile doesn't return user
-          email: user.email,
-          photo: photo, // Use manually
-          createdAt: new Date().toISOString(),
-        };
-      
-        // Store user data in the database
-        const dbResponse = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/user`,
-          userData
-        );
-      
-        if (dbResponse.data.insertedId) {
-          e.target.reset();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${name} is successfully registered`,
-            showConfirmButton: false,
-            timer: 3000,
-          });
-          navigate(from, {replace: true});
-        }
-      } catch (error) {
+      // Create an user
+      const userCredential = await createUser(email, password);
+      const user = userCredential.user; // Get user info after registration
+
+      // Update user name and photo
+      await updateUserInfo({ displayName: name, photoURL: photo });
+
+      // Prepare data for saving in the database
+      const userData = {
+        userID: user.uid,
+        name: name, // Use manually since updateProfile doesn't return user
+        email: user.email,
+        photo: photo, // Use manually
+        createdAt: new Date().toISOString(),
+      };
+
+      // Store user data in the database
+      const dbResponse = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user`,
+        userData
+      );
+
+      if (dbResponse.data.insertedId) {
+        e.target.reset();
         Swal.fire({
           position: "center",
-          icon: "error",
-          title: error.response?.data?.message || error.message || "Something went wrong",
+          icon: "success",
+          title: `${name} is successfully registered`,
           showConfirmButton: false,
           timer: 3000,
         });
-      }      
+        navigate(from, { replace: true });
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   };
 
   const handleGoogleLogin = async () => {
     try {
       const result = await loginWithGoogle();
       const user = await result.user;
-  
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${user?.displayName} is successfully logged in via Google`,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      navigate(from, { replace: true });
+
       // Prepare data for saving in the database
       const userData = {
         userID: user?.uid,
@@ -100,33 +112,22 @@ const Register = () => {
         photo: user?.photoURL,
         createdAt: new Date().toISOString(),
       };
-  
+
       // Insert user data in the database
-      const dbResponse = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/user`,
-        userData
-      );
-  
-      if (dbResponse.data.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `${user?.displayName} is successfully logged in via Google`,
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        navigate(from, {replace: true});
-      }
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user`, userData);
     } catch (error) {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: error.response?.data?.message || error.message || "Something went wrong",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
         showConfirmButton: false,
         timer: 3000,
       });
     }
-  };  
+  };
 
   return (
     <div>

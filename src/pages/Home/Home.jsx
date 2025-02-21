@@ -1,7 +1,11 @@
+import Tasks from "../Tasks/Tasks";
+
 const Home = () => {
     return (
-        <div>
-            Home
+        <div className="pt-20 pb-16">
+
+            {/* All Tasks */}
+            <Tasks />
         </div>
     );
 };

@@ -1,10 +1,13 @@
 import axios from "axios";
+import { useContext } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const AddTask = () => {
   const navigate = useNavigate();
+  const {user} = useContext(AuthContext);
   const handleAddTask = async (e) => {
     e.preventDefault();
 
@@ -12,6 +15,9 @@ const AddTask = () => {
     const Title = form.taskTitle.value;
     const Description = form.description.value;
     const Category = form.category.value;
+    const UserID = user?.uid;
+    const UserName = user?.displayName;
+    const UserPhoto = user?.photoURL;
 
     if (!Title.trim()) {
       Swal.fire({
@@ -19,22 +25,26 @@ const AddTask = () => {
         icon: "error",
         title: "Title is required!",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 5000,
       });
     }
 
     try {
       const taskData = {
+        UserID,
+        UserName,
+        UserPhoto,
         Title,
         Description,
         TimeStamp: new Date().toISOString(),
         Category,
       };
 
-      console.log(taskData);
+      //   console.log(taskData);
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/tasks`
+        `${import.meta.env.VITE_BACKEND_URL}/tasks`,
+        taskData
       );
 
       if (response.data.insertedId) {
@@ -43,7 +53,7 @@ const AddTask = () => {
           icon: "success",
           title: `${Title} is successfully added`,
           showConfirmButton: false,
-          timer: 3000,
+          timer: 5000,
         });
         navigate("/");
       }
@@ -56,7 +66,7 @@ const AddTask = () => {
           error.message ||
           "Something went wrong",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 5000,
       });
     }
   };
