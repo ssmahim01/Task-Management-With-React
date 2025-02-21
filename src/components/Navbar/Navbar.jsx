@@ -77,12 +77,20 @@ const Navbar = () => {
             {routes}
           </ul>
         </div>
-        <a
-          href="/"
-          className="btn btn-ghost lg:text-3xl text-xl lg:pb-0 pb-1 flex gap-0 items-center font-bold"
-        >
-          <span>Task</span> <span className="text-indigo-600">Flow</span>
-        </a>
+        <div className="flex gap-1 items-center">
+          <img
+            src="task-flow-logo.webp"
+            className="w-10 h-10 rounded-md"
+            referrerPolicy="no-referrer"
+            alt="Logo of task flow"
+          />
+          <a
+            href="/"
+            className="btn btn-ghost lg:text-3xl text-xl p-2 flex gap-0 items-center font-bold"
+          >
+            <span>Task</span> <span className="text-indigo-600">Flow</span>
+          </a>
+        </div>
       </div>
 
       <div className="navbar-end">
@@ -95,12 +103,12 @@ const Navbar = () => {
         {user ? (
           <div className="flex gap-2 items-center">
             <figure className="w-12 h-12 avatar avatar-online">
-            <img
-              src={user?.photoURL}
-              alt={user?.displayName}
-              className="w-full h-full border-4 border-indigo-500 rounded-full"
-              referrerPolicy="no-referrer"
-            />
+              <img
+                src={user?.photoURL}
+                alt={user?.displayName}
+                className="w-full h-full border-4 border-indigo-500 rounded-full"
+                referrerPolicy="no-referrer"
+              />
             </figure>
 
             <button

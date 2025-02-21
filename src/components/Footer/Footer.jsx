@@ -10,13 +10,21 @@ const Footer = () => {
       <footer className="flex md:flex-row flex-col justify-between bg-neutral-800 text-white/80 p-8 gap-5">
         <div className="md:w-2/5">
           <div className="flex flex-col gap-y-2">
-            <a
-              href="/"
-              className="md:text-4xl p-0 text-3xl font-bold flex gap-0 mb-1"
-            >
-              <span>Task</span>
-              <span className="text-indigo-600">Flow</span>
-            </a>
+            <div className="flex gap-2 items-center">
+              <img
+                src="task-flow-logo.webp"
+                className="w-10 h-10 rounded-md"
+                referrerPolicy="no-referrer"
+                alt="Logo of task flow"
+              />
+              <a
+                href="/"
+                className="md:text-4xl p-0 text-3xl font-bold flex gap-0 mb-1"
+              >
+                <span>Task</span>
+                <span className="text-indigo-600">Flow</span>
+              </a>
+            </div>
 
             <p className=" text-sm font-semibold">
               TaskFlow offers a powerful yet simple way to manage your tasks.
@@ -66,26 +74,23 @@ const Footer = () => {
         <div className="md:w-2/5 space-y-3">
           <h3 className="text-3xl font-bold">Page Links</h3>
           <nav className="flex flex-col gap-y-4 *:font-semibold">
-              <button className="btn btn-ghost lg:w-1/5 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <Link to="/" className="flex gap-x-2">
-                <FaHome className="text-lg" />{" "}
-                <span>Home</span>
-            </Link>
-              </button>
+            <button className="btn btn-ghost lg:w-1/5 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <Link to="/" className="flex gap-x-2">
+                <FaHome className="text-lg" /> <span>Home</span>
+              </Link>
+            </button>
 
-              <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <Link to="/add-task" className="flex gap-x-2">
-                <IoMdAddCircle className="text-lg" />{" "}
-                <span>Add Tasks</span>
-            </Link>
-              </button>
+            <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <Link to="/add-task" className="flex gap-x-2">
+                <IoMdAddCircle className="text-lg" /> <span>Add Tasks</span>
+              </Link>
+            </button>
 
-              <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
-            <Link to="/manage-tasks" className="flex gap-x-2">
-                <MdMenuBook className="text-lg" />{" "}
-                <span>Manage Tasks</span>
-            </Link>
-              </button>
+            <button className="btn btn-ghost lg:w-2/6 hover:bg-neutral hover:text-white rounded-md justify-start">
+              <Link to="/manage-tasks" className="flex gap-x-2">
+                <MdMenuBook className="text-lg" /> <span>Manage Tasks</span>
+              </Link>
+            </button>
           </nav>
         </div>
       </footer>
