@@ -6,6 +6,7 @@ import Register from "./pages/Authentication/Register";
 import AuthLayout from "./layouts/AuthLayout";
 import AddTask from "./pages/AddTask/AddTask";
 import PrivateRoute from "./routes/PrivateRoute";
+import ManageTasks from "./pages/ManageTasks/ManageTasks";
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route index element={<Home />} />
-          <Route path="/add-task" element={<AddTask />} />
+          <Route index element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/add-task" element={<PrivateRoute><AddTask /></PrivateRoute>} />
+          <Route path="/manage-tasks" element={<PrivateRoute><ManageTasks /></PrivateRoute>} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
