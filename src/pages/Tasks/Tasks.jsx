@@ -13,7 +13,7 @@ const Tasks = () => {
   const {
     data: tasks = [],
     refetch,
-    isLoading,
+    isPending,
   } = useQuery({
     queryKey: ["tasks", user?.uid],
     queryFn: async () => {
@@ -26,32 +26,41 @@ const Tasks = () => {
 
   const onDragEnd = async (result) => {
     if (!result.destination) return;
-
+  
     const { source, destination } = result;
     const updatedTasks = [...tasks];
-
+  
+    // Find the moved task
     const movedTask = updatedTasks[source.index];
-    if (source.droppableId !== destination.droppableId) {
-      movedTask.category = destination.droppableId;
-    }
-
+  
+    // Remove the task from its original position
     updatedTasks.splice(source.index, 1);
+  
+    // Insert the task at its new position
     updatedTasks.splice(destination.index, 0, movedTask);
-
+  
+    // Update the task's category and index
+    movedTask.Category = destination.droppableId;
+    
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/tasks/${movedTask._id}`,
-        { Category: movedTask.category }
+        {
+          Category: movedTask.Category,
+          newIndex: destination.index, // Send the new position to backend
+        }
       );
-
+  
       if (response.data.modifiedCount > 0) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Moved the task",
+          title: "Task Moved Successfully",
           showConfirmButton: false,
-          timer: 3000,
+          timer: 2000,
         });
+  
+        // Refetch tasks from the backend to reflect the correct order
         refetch();
       }
     } catch (error) {
@@ -66,9 +75,9 @@ const Tasks = () => {
         timer: 3000,
       });
     }
-  };
+  };  
 
-  if (isLoading) return <p>loading...</p>;
+  if (isPending) return <p>loading...</p>;
 
   return (
     <div className="lg:w-[90%] w-11/12 mx-auto">
@@ -91,7 +100,7 @@ const Tasks = () => {
                       .filter((task) => task?.Category === category)
                       .map((task, index) => (
                         <Draggable
-                          key={task._id}
+                          key={task?._id}
                           draggableId={task?._id}
                           index={index}
                         >
@@ -102,6 +111,18 @@ const Tasks = () => {
                               {...provided.dragHandleProps}
                               className="card-body space-y-1 mt-4 border border-neutral-300 hover:scale-105 hover:shadow-xl rounded-md p-3"
                             >
+                              <div className="flex justify-between items-center mb-1">
+                                <img
+                                  src={user?.photoURL}
+                                  alt={user?.displayName}
+                                  className="w-10 h-10 rounded-full avatar border-4 border-indigo-500"
+                                  referrerPolicy="no-referrer"
+                                />
+
+                                <h4 className="text-base text-white/90 font-semibold">
+                                  {user?.displayName}
+                                </h4>
+                              </div>
                               <h3 className="text-white/90 font-bold flex gap-2 items-center">
                                 <MdTitle className="text-lg" />{" "}
                                 <span className="text-base">{task?.Title}</span>

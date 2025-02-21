@@ -93,7 +93,16 @@ const Navbar = () => {
         </div>
 
         {user ? (
-          <>
+          <div className="flex gap-2 items-center">
+            <figure className="w-12 h-12 avatar avatar-online">
+            <img
+              src={user?.photoURL}
+              alt={user?.displayName}
+              className="w-full h-full border-4 border-indigo-500 rounded-full"
+              referrerPolicy="no-referrer"
+            />
+            </figure>
+
             <button
               onClick={handleLogOut}
               className="bg-rose-500 cursor-pointer py-2 px-5 text-white hover:bg-rose-700 rounded-md font-bold flex gap-1 items-center"
@@ -101,7 +110,7 @@ const Navbar = () => {
               <BiSolidLogOutCircle className="text-2xl" />
               <span className="text-base">Log Out</span>
             </button>
-          </>
+          </div>
         ) : (
           <>
             <button className="bg-indigo-500 py-2 px-5 text-white hover:bg-indigo-700 rounded-md font-bold">
