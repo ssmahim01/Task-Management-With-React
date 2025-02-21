@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Loading from "../../components/Loading/Loading";
 
 const Tasks = () => {
   const { user } = useContext(AuthContext);
@@ -77,7 +78,7 @@ const Tasks = () => {
     }
   };  
 
-  if (isPending) return <p>loading...</p>;
+  if (isPending) return <Loading />;
 
   return (
     <div className="lg:w-[90%] w-11/12 mx-auto">
