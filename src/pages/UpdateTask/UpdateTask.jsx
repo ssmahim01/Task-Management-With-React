@@ -1,10 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { MdUpdate } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
+import Swal from "sweetalert2";
 
 const UpdateTask = () => {
-    const {id} = useParams();
-  const { data: task, refetch } = useQuery({
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const {
+    data: task,
+    refetch,
+    isPending,
+  } = useQuery({
     queryKey: ["task", id],
     queryFn: async () => {
       const response = await axios.get(
@@ -13,6 +22,57 @@ const UpdateTask = () => {
       return response.data;
     },
   });
+
+  // console.log(task);
+
+  const handleUpdateTask = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const Title = form.taskTitle.value;
+    const Description = form.description.value;
+    const Category = form.category.value;
+
+    try {
+      // Prepare data for update via put
+      const updateTaskData = {
+        Title,
+        Description,
+        Category,
+      };
+
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/tasks/${id}`,
+        updateTaskData
+      );
+
+      // Show alert by sweet alert for successful update
+      if (response.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully updated the task",
+          showConfirmButton: false,
+          timer: 5000,
+        });
+        refetch();
+        navigate("/manage-tasks");
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
+        showConfirmButton: false,
+        timer: 5000,
+      });
+    }
+  };
+
+  if (isPending) return <Loading />;
 
   return (
     <div className="hero pt-20 pb-16">
@@ -24,7 +84,7 @@ const UpdateTask = () => {
         </div>
 
         <div className="bg-base-100/80 shrink-0 shadow-md rounded-md">
-          <form className="card-body">
+          <form onSubmit={handleUpdateTask} className="card-body">
             <fieldset className="fieldset">
               <label className="fieldset-label">
                 <span className="font-bold">Task Title</span>

@@ -24,7 +24,7 @@ function App() {
           <Route index element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/add-task" element={<PrivateRoute><AddTask /></PrivateRoute>} />
           <Route path="/manage-tasks" element={<PrivateRoute><ManageTasks /></PrivateRoute>} />
-          <Route path="/update-task" element={<PrivateRoute><UpdateTask /></PrivateRoute>} />
+          <Route path="/update-task/:id" element={<PrivateRoute><UpdateTask /></PrivateRoute>} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />

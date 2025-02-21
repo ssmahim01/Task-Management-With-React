@@ -26,7 +26,7 @@ const ManageTasks = () => {
     };
 
     const response = await axios.put(
-      `${import.meta.env.VITE_BACKEND_URL}/tasks/${taskId}`,
+      `${import.meta.env.VITE_BACKEND_URL}/task-category/${taskId}`,
       Category
     );
 

@@ -45,10 +45,10 @@ const Register = () => {
     try {
       // Create an user
       const userCredential = await createUser(email, password);
-      const user = userCredential.user; // Get user info after registration
+      const user = userCredential.user;
 
       // Update user name and photo
-      await updateUserInfo({ displayName: name, photoURL: photo });
+      await updateUserInfo(name, photo);
 
       // Prepare data for saving in the database
       const userData = {

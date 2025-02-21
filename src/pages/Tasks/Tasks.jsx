@@ -45,7 +45,7 @@ const Tasks = () => {
     
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/tasks/${movedTask._id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/task-move/${movedTask._id}`,
         {
           Category: movedTask.Category,
           newIndex: destination.index, // Send the new position to backend
