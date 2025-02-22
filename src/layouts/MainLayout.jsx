@@ -9,7 +9,7 @@ const MainLayout = () => {
             <Navbar />
 
             {/* Children contents of Main layout */}
-            <main className="bg-neutral-100 min-h-[calc(100vh-313px)]">
+            <main className="min-h-[calc(100vh-313px)]">
             <Outlet />
             </main>
 

@@ -6,7 +6,8 @@ TaskFlow is a simple and efficient task management system designed to help users
 ---
 
 ## 🚀 Live Demo
-🔗 [TaskFlow Live](https://my-task-flow-management.vercel.app)
+🔗 [TaskFlow Live on Vercel](https://my-task-flow-management.vercel.app)
+🔗 [TaskFlow Live on Firebase](https://task-flow-25.web.app)
 
 ## 📁 Backend Repository
 
@@ -48,7 +49,6 @@ Follow these steps to set up the project locally:
 ```sh
  npm install
 ```
-<br>
 
 ### **3️⃣ Set Up Environment Variables**
 Create a `.env.local` file in the root directory and add:

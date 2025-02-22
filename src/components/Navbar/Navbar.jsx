@@ -4,12 +4,24 @@ import { IoMdAddCircle } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Handle Toggle Of Light & Dark
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "night" : "light"));
+  };
 
   const handleLogOut = () => {
     logOutUser().then(() => {
@@ -47,7 +59,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar py-2 bg-neutral-200 border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4">
+    <div className={`navbar ${theme === "light" ? "text-neutral-700 bg-neutral-200" : "text-neutral-200 bg-neutral-800"} py-2  border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -72,7 +84,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100/90 rounded-box z-[10] mt-3 w-60 p-3 shadow gap-3 mr-3 *:text-neutral-800 *:font-semibold"
+            className="menu menu-sm dropdown-content bg-base-100/90 rounded-box z-[10] mt-3 w-60 p-3 shadow gap-3 mr-3 *:font-semibold"
           >
             {routes}
           </ul>
@@ -95,10 +107,12 @@ const Navbar = () => {
 
       <div className="navbar-end">
         <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal gap-3 mr-3 *:text-neutral-800 *:font-semibold px-1">
+          <ul className="menu menu-horizontal gap-3 mr-3 *:font-semibold px-1">
             {routes}
           </ul>
         </div>
+
+        <ThemeToggle theme={theme} handleToggleTheme={handleToggleTheme} />
 
         {user ? (
           <div className="flex gap-2 items-center">

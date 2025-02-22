@@ -102,13 +102,13 @@ const Login = () => {
                 className="btn w-full flex gap-3 justify-center items-center"
               >
                 <FcGoogle className="text-2xl" />
-                <span className="text-base text-gray-800 font-bold">
+                <span className="text-base font-bold">
                   Login with Google
                 </span>
               </button>
             </div>
 
-            <div className="divider text-gray-600 font-medium">
+            <div className="divider font-medium">
               Or Login with Email
             </div>
 
@@ -151,7 +151,7 @@ const Login = () => {
             </div>
           </form>
 
-          <p className="text-gray-700 font-semibold pb-8 text-center">
+          <p className="font-semibold pb-8 text-center">
             If you are new in this site? Please{" "}
             <Link to="/register" className="text-rose-500 font-bold">
               Register

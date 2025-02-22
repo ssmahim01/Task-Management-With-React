@@ -55,13 +55,6 @@ const Tasks = () => {
       if (response.data.modifiedCount > 0) {
         // Refetch tasks from the backend to reflect the correct order
         refetch();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Task Moved Successfully",
-          showConfirmButton: false,
-          timer: 2000,
-        });
       }
     } catch (error) {
       Swal.fire({

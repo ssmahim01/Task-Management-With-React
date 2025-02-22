@@ -209,7 +209,7 @@ const Register = () => {
             </div>
           </form>
 
-          <p className="text-gray-700 font-bold text-center">
+          <p className="font-bold text-center">
             Already have an Account? Please{" "}
             <Link to="/login" className="text-indigo-500 font-bold">
               Login
@@ -224,7 +224,7 @@ const Register = () => {
               className="btn w-full flex gap-3 justify-center items-center"
             >
               <FcGoogle className="text-2xl" />{" "}
-              <span className="text-base text-gray-800 font-bold">
+              <span className="text-base font-bold">
                 Login with Google
               </span>
             </button>
