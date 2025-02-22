@@ -53,7 +53,7 @@ const Navbar = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn border border-neutral-300 btn-ghost lg:hidden"
+            className="btn border border-neutral-300 btn-ghost lg:hidden mr-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const Navbar = () => {
           />
           <a
             href="/"
-            className="btn btn-ghost lg:text-3xl text-xl p-2 flex gap-0 items-center font-bold"
+            className="btn btn-ghost lg:text-3xl text-xl p-2 md:flex gap-0 items-center font-bold hidden"
           >
             <span>Task</span> <span className="text-indigo-600">Flow</span>
           </a>

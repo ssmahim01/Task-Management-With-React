@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { FaCalendarWeek } from "react-icons/fa";
 import { MdDescription, MdTitle } from "react-icons/md";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
@@ -51,8 +51,10 @@ const Tasks = () => {
           newIndex: destination.index, // Send the new position to backend
         }
       );
-  
+      
       if (response.data.modifiedCount > 0) {
+        // Refetch tasks from the backend to reflect the correct order
+        refetch();
         Swal.fire({
           position: "center",
           icon: "success",
@@ -60,9 +62,6 @@ const Tasks = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-  
-        // Refetch tasks from the backend to reflect the correct order
-        refetch();
       }
     } catch (error) {
       Swal.fire({
