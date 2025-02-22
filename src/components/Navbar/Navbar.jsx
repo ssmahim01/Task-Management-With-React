@@ -91,7 +91,7 @@ const Navbar = () => {
         </div>
         <div className="flex gap-1 items-center">
           <img
-            src="task-flow-logo.webp"
+            src="favicon.ico"
             className="w-10 h-10 rounded-md"
             referrerPolicy="no-referrer"
             alt="Logo of task flow"

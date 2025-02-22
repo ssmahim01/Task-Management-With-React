@@ -83,7 +83,7 @@ const UpdateTask = () => {
           </h1>
         </div>
 
-        <div className="bg-base-100/80 shrink-0 shadow-md rounded-md">
+        <div className="bg-base-100/80 border border-neutral-300 shrink-0 shadow-md rounded-md">
           <form onSubmit={handleUpdateTask} className="card-body">
             <fieldset className="fieldset">
               <label className="fieldset-label">

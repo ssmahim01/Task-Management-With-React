@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="flex flex-col gap-y-2">
             <div className="flex gap-2 items-center">
               <img
-                src="task-flow-logo.webp"
+                src="favicon.ico"
                 className="w-10 h-10 rounded-md"
                 referrerPolicy="no-referrer"
                 alt="Logo of task flow"

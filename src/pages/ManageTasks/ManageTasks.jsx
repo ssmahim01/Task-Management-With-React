@@ -92,13 +92,13 @@ const ManageTasks = () => {
             {tasksData?.map((task) => {
               return (
                 <tr key={task?._id} className="border border-neutral-200">
-                  <td className="text-neutral-600 font-semibold">
+                  <td className="font-semibold">
                     {task?.Title}
                   </td>
-                  <td className="text-neutral-600 font-semibold">
+                  <td className="font-semibold">
                     {task?.Description.slice(0, 40)}...
                   </td>
-                  <td className="text-neutral-600 font-semibold">
+                  <td className="font-semibold">
                     {new Date(task?.TimeStamp).toLocaleString("en-UK")}
                   </td>
                   <td>
