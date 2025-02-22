@@ -6,42 +6,29 @@ TaskFlow is a simple and efficient task management system designed to help users
 ---
 
 ## 🚀 Live Demo
-🔗 [TaskFlow Live](#) *(https://my-task-flow-management.vercel.app)*
+🔗 [TaskFlow Live](https://my-task-flow-management.vercel.app)
 
 ## 📁 Backend Repository
 
-🔗 [TaskFlow Backend](#) *(https://github.com/ssmahim01/Task-Management-Backend)*
+🔗 [TaskFlow Backend](https://github.com/ssmahim01/Task-Management-Backend)
 
 ---
 
 ## 📦 Dependencies
 ```json
 "dependencies": {
-    <br>
     "@hello-pangea/dnd": "^18.0.1",
-    <br>
     "@tailwindcss/vite": "^4.0.7",
-    <br>
     "@tanstack/react-query": "^5.66.8",
-    <br>
     "axios": "^1.7.9",
-    <br>
     "firebase": "^11.3.1",
-    <br>
     "react": "^19.0.0",
-    <br>
     "react-dom": "^19.0.0",
-    <br>
     "react-icons": "^5.5.0",
-    <br>
     "react-router": "^7.2.0",
-    <br>
     "react-router-dom": "^7.2.0",
-    <br>
     "sweetalert2": "^11.17.2",
-    <br>
     "tailwindcss": "^4.0.7"
-    <br>
   }
   ```
 
@@ -73,7 +60,7 @@ VITE_storageBucket="Your Firebase Storage Bucket"
 VITE_messagingSenderId="Your Firebase Messaging Sender Id"
 VITE_appId="Your Firebase App Id"
 
-VITE_BACKEND_URL=Your Backend URL(localhost or production URL)
+VITE_BACKEND_URL="Your Backend URL(localhost or production URL)"
 ```
 
 ### **4️⃣ Start the Frontend Development Server**
@@ -87,7 +74,7 @@ VITE_BACKEND_URL=Your Backend URL(localhost or production URL)
 - **Frontend:** React.js, Tailwind CSS, DaisyUI, React Router
 - **Backend:** Node.js, Express.js, MongoDB
 - **Authentication:** Firebase Authentication
-- **Hosting:** Netlify (Frontend), Render/Heroku (Backend)
+- **Hosting:** Firebase & Vercel (Frontend), Vercel (Backend)
 
 ---
 
