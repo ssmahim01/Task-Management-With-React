@@ -35,7 +35,7 @@ const ManageTasks = () => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: `Reorder the task to ${e.target.value}`,
+        title: `Changed status of the task to ${e.target.value}`,
         showConfirmButton: false,
         timer: 3000,
       });

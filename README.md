@@ -88,7 +88,7 @@ VITE_BACKEND_URL="Your Backend URL(localhost or production URL)"
 ---
 
 ## 🎯 Features
-✅ User Authentication (Sign up/Login via Firebase)  
+✅ User Authentication (Register/Login via Firebase)  
 ✅ Task CRUD operations (Create, Read, Update, Delete)  
 ✅ Drag and drop functionality for task reordering  
 ✅ Task categorization and indexing  
