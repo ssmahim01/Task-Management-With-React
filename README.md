@@ -1,3 +1,9 @@
+<div align="center">
+  <img width="100%" height="340" src="/public/task-flow.png"  />
+</div>
+
+---
+
 # 👨‍💼 TaskFlow - Task Management System
 
 ## 📝 Short Description
