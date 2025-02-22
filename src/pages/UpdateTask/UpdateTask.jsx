@@ -10,7 +10,7 @@ const UpdateTask = () => {
   const navigate = useNavigate();
 
   const {
-    data: task,
+    data: task = {},
     refetch,
     isPending,
   } = useQuery({
@@ -48,6 +48,7 @@ const UpdateTask = () => {
 
       // Show alert by sweet alert for successful update
       if (response.data.modifiedCount > 0) {
+        refetch();
         Swal.fire({
           position: "center",
           icon: "success",
@@ -55,7 +56,6 @@ const UpdateTask = () => {
           showConfirmButton: false,
           timer: 5000,
         });
-        refetch();
         navigate("/manage-tasks");
       }
     } catch (error) {

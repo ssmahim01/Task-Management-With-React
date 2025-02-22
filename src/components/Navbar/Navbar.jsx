@@ -59,7 +59,13 @@ const Navbar = () => {
   );
 
   return (
-    <div className={`navbar ${theme === "light" ? "text-neutral-700 bg-neutral-200" : "text-neutral-200 bg-neutral-800"} py-2  border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4`}>
+    <div
+      className={`navbar ${
+        theme === "light"
+          ? "text-neutral-700 bg-neutral-200"
+          : "text-neutral-200 bg-neutral-800"
+      } py-2  border-b border-neutral-200 fixed z-10 shadow-sm lg:px-12 md:px-6 px-4`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -105,14 +111,16 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="navbar-end">
+      <div className="navbar-end w-full">
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal gap-3 mr-3 *:font-semibold px-1">
             {routes}
           </ul>
         </div>
 
-        <ThemeToggle theme={theme} handleToggleTheme={handleToggleTheme} />
+        <div className="">
+          <ThemeToggle theme={theme} handleToggleTheme={handleToggleTheme} />
+        </div>
 
         {user ? (
           <div className="flex gap-2 items-center">
