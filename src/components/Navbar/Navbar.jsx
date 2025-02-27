@@ -20,7 +20,7 @@ const Navbar = () => {
 
   // Handle Toggle Of Light & Dark
   const handleToggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "night" : "light"));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   const handleLogOut = () => {
