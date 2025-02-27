@@ -56,7 +56,7 @@ const UpdateTask = () => {
           showConfirmButton: false,
           timer: 5000,
         });
-        navigate("/manage-tasks");
+        navigate("/");
       }
     } catch (error) {
       Swal.fire({
